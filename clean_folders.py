@@ -23,7 +23,7 @@ TARGET_DIRS = [
     home / "Videos"
 ]
 
-# Ensure base folders exist
+# ensure existance of the folders
 for folder in folders:
     folder_path = home / folder
     folder_path.mkdir(exist_ok=True)
@@ -47,9 +47,9 @@ def clean_directory(target: Path):
 
             # Skip if file is already inside the correct main folder (or its subfolder)
             if (home / correct_folder) in file_path.parents:
-                continue  # ✅ Correct place, leave it there
+                continue  # already in correct place, leave it there
 
-            # Otherwise → move to correct place
+            # if not → move to correct place
             destination = home / correct_folder / file
             if not destination.exists():
                 shutil.move(str(file_path), str(destination))
@@ -57,7 +57,7 @@ def clean_directory(target: Path):
             else:
                 print(f"Skipped {file_path}, already exists in {correct_folder}")
 
-        # ✅ Delete empty folders (but not main categories or home)
+        # Delete empty folders (but not main categories or home)
         if root_path != home and root_path not in [home / f for f in folders]:
             try:
                 root_path.rmdir()
@@ -65,7 +65,7 @@ def clean_directory(target: Path):
             except OSError:
                 pass  # not empty
 
-# 🚀 Run cleanup only for selected TARGET_DIRS
+# Run cleanup only for selected TARGET_DIRS
 for target_dir in TARGET_DIRS:
     if target_dir.exists():
         print(f"\n🔹 Cleaning {target_dir} ...")
