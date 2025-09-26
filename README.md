@@ -14,6 +14,19 @@ It also removes **empty folders** and ensures your files are neatly organized.
 
 ---
 
+---
+
+⚠️ Important Warning
+
+If your Documents folder contains project folders (e.g., Django apps, Node.js projects, etc.), running this cleaner may move or reorganize files inside them.
+To avoid issues:
+
+Exclude project folders from the cleaning rules.
+
+Or move your coding projects to a separate directory (e.g., ~/Projects) before running the script.
+
+---
+
 ## 📂 Example
 Before:
 ~/Desktop/
